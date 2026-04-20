@@ -53,16 +53,18 @@ def func7() :
     return 100
 print(func7())
 
+
+# 확인문제
 def f(x):
     return x**2+2*x+1
 print(f(10))
 
 
-def mul(*values):
-    i = 1
-    for value in values:
-        i *= value
-    return i
+def mul(*values):    # 가변 매개변수는 리스트 타입이다.
+    i = 1            # 모두 곱합 결과를 저장하는 변수 
+    for value in values: # 리스트 반복문
+        i *= value      # 하나씩 곱한다.
+    return i            # 함수 종료시 모두 곱한 결과 리턴/반환
 
 print(mul(5, 7, 9, 10))
 
