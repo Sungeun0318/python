@@ -90,4 +90,8 @@ for number in numbers :                 # 반복문
         continue                        # 반복변수가 10보다 작으면 다음으로 이동
     print(number)   
 
+# 확인문제 p. 247
+a = range(5)
+print(list(a))
+
 

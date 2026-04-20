@@ -66,8 +66,8 @@ print(movie)
 # 문제 8: 반복문을 이용한 딕셔너리 출력 딕셔너리 fruit_stock = {"apple": 10, "banana": 5, "cherry": 15}가 있습니다. for 반복문을 사용하여 다음과 같은 형식으로 출력하시오.
 # 출력 형식: apple의 재고는 10개입니다. (모든 요소 반복)
 fruit_stock = {"apple": 10, "banana": 5, "cherry": 15}
-for fruit, stock in fruit_stock.items():
-    print("{}의 재고는 {}개입니다.".format(fruit, stock))
+for a, b in fruit_stock.items():
+    print("{}의 재고는 {}개입니다.".format(a, b))
 
 
 
@@ -82,9 +82,9 @@ students = [
     {"name": "윤동주", "score": 90},
     {"name": "백석", "score": 85}
 ]
+
 for student in students:
     print("{} 학생의 점수는 {}점입니다.".format(student["name"], student["score"]))
-
 
 
 
