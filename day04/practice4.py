@@ -3,8 +3,9 @@
 
 # 문제 1: range와 역순 출력 range() 함수와 reversed() 함수를 사용하여 10부터 1까지의 숫자를 역순으로 한 줄에 하나씩 출력하는 프로그램을 작성하시오.
 a = range(1,11)
-print(list(a))
-print(list(reversed(a)))
+for i in reversed(a) :
+    print(i)
+
 
 # 문제 2: 누적 합계 계산 for문과 range()를 사용하여 1부터 100까지 정수 중 5의 배수만 더하여 최종 합계를 출력하시오.
 # (출력 예시: 1부터 100까지 5의 배수의 합: 1050)
@@ -18,7 +19,7 @@ print(b)
 # (출력 예시: 1번 과일: 사과, 2번 과일: 바나나 ...)
 fruits = ['사과', '바나나', '딸기', '포도']
 for a, b in enumerate(fruits) :
-    print(a, b)
+    print(f"{a+1}번 과일 : {b}")
     
 
 # 문제 4: 리스트 내포(List Comprehension) 1부터 10개까지의 숫자 중 홀수만 골라 그 제곱값을 담는 리스트를 리스트 내포 방식을 사용하여 한 줄로 생성하고 출력하시오.
@@ -57,9 +58,9 @@ for i in range(2, 10):
 # 요구 조건: 만원 단위를 100으로 나눈 몫만큼 별을 출력하시오.
 # (출력 예시: 1주차: ★★★ 350만원)
 sales = [350, 920, 580, 1100]
-for i, sale in enumerate(sales, a=1):
-    a = "★" * (sale // 100)
-    print(f"{i}주차: {a} {sale}만원")
+for i, sale in enumerate(sales, start=1):
+    start = "★" * (sale // 100)
+    print(f"{i}주차: {start} {sale}만원")
 
 
 
@@ -78,8 +79,8 @@ for car, minutes in zip(car_numbers, usage_minutes):
         fee = 1000
     else:
         a_time = minutes - 30
-        fee2 = (a_time // 10) * 500
-        fee = 1000 + fee2
+        a_fee = ((a_time + 9) // 10) * 500
+        fee = 1000 + a_fee
     
     if fee > 20000:
         fee = 20000
