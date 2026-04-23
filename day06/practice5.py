@@ -68,7 +68,11 @@ def get_top_student(students):
             highest_score = student['score']
             best_student = student['name']
     return best_student
-get_top_student()
+get_top_student([
+        {'name': '철수', 'score': 85},
+        {'name': '영희', 'score': 98},
+        {'name': '민수', 'score': 70}
+    ])
 
 # 문제 8: 리스트 요소 합계 (sum_list)
 # 숫자로 이루어진 리스트 하나를 매개변수로 받아 for문을 사용하여 모든 요소의 합계를 구한 뒤 반환하는 함수를 작성하시오.
@@ -77,6 +81,7 @@ def sum_list(numbers):
     for num in numbers:
         total += num
     return total
+sum_list([1, 3, 5, 77, 2, 1])
 
 # 문제 9: 전역 변수 점수 관리
 # 전역 변수 current_score = 0을 선언하고, 점수를 추가하는 add_score(n) 함수와 감점하는 sub_score(n) 함수를 작성하시오. (함수 내에서 global 키워드를 사용하여 전역 변수 값을 수정하시오.)
@@ -90,7 +95,13 @@ def sub_score(n):
     global current_score
     current_score -= n
 
+add_score(500)
+sub_score(10)
+print(current_score)
+
 # 문제 10: 상품 결제 시스템 (calculate_payment)
 # 상품 가격(price)과 수량(count)은 일반 매개변수로 받고, 할인율(discount)은 기본 매개변수 0.1(10%)로 설정하시오. (최종 결제 금액 = 가격 * 수량 * (1 - 할인율)) 결과는 정수형으로 반환하시오.
 def calculate_payment(price, count, discount=0.1):
     return int(price * count * (1 - discount))
+
+calculate_payment(10000, 5)
