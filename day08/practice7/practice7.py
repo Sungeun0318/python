@@ -3,7 +3,7 @@ login_name = ""
 apt_list = []
 
 file_name = "./day08/practice7/user.txt"
-apt_file = "아파트_실거래가.csv"
+apt_file = "./day08/practice7/아파트_실거래가.csv"
 
 
 def signup():
