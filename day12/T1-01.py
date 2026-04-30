@@ -95,3 +95,15 @@ print(z.count()) # .count() 요소 개수
 print(z.value_counts()) # .value_counts() 각 요소별 중복 개수
 print(z.value_counts(normalize=True)) # 각 요소가 전체에서 차지하는 비율(0~1)
 
+# 12. 정렬, 한쪽이 정렬되면 다른쪽이 같이 이동된다.
+# 오름 차순 : .sort_index(), .sort_values(), 
+# 내림 차순 : .sort_index(ascending=False), .sort_values(ascending=False)
+x = z.sort_index() # 인덱스(라벨) 기준의 정렬(asc)
+print(x)
+x = z.sort_values() # 값 기준의 정렬(asc)
+print(x)
+
+x = z.sort_index(ascending=False) # 내림차순(desc)
+print(x)
+x = z.sort_values(ascending=False) # 내림차순(desc)
+print(x)
