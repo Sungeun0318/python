@@ -29,7 +29,7 @@ print(z)
 
 # 3. 딕셔너리로 생성
 # 파이썬 주요 타입, [리스트] (튜플) {딕셔너리}
-x = {'apple' : 1, 'banana' : 2, 'cherry' : '3'}
+x = {'apple' : 1, 'banana' : 2, 'cherry' : 3}
 z = pd.Series(x)
 print(z)
 
@@ -50,6 +50,48 @@ print(z.loc['apple' : 'cherry'])     # loc[시작라벨 : 끝라벨]
 # 6. 데이터 수정
 z['apple'] = 10     # [라벨명] = 새로운값
 print(z)
-print(z['apple'])
+print(z['apple'])   # [라벨명]
 
+# 7. 데이터 추가
+z['berry'] = 40     # [새로운라벨명] = 새로운값
+print(z)
+
+# 8. 병합, .concat([x, y]), 판다스 합치기 
+x = pd.Series([10, 20, 30], index=['a', 'b', 'c'])
+y = pd.Series([40, 50], index=['d', 'e'])
+z = pd.concat([x, y])
+print(z)
+
+# 9. 라벨 이름 변경, .rename({'기존' : '새로운'})
+# 파이썬
+test = 'hello java' # hello ccccccccjava
+test = test.replace(' ', '-') # 문자열(리터럴)은 불변성 특징
+print(test) # hello-java 
+
+x = z.rename({'a' : 'apple'})
+print(x)
+
+# 10. 필터링, [조건식], [(조건식1) | (조건식2)]
+print(z[ z > 30 ]) # 30 초과한 요소 값에 10 더한 후에 
+x = z[z > 30]
+print(x)
+
+x = z[(z < 25) | (z > 35)] # 25보다 작거나 35보다 크다
+print(x)
+x = z[(z > 25) & (z < 35)] # 25보다 크면서 35보다 작다
+print(x)
+z[z > 30] = z[ z > 30 ] + 10 # 30초과 한 요소값에 10 더한 후에 30 초과한 요소에만 대입
+print(z)
+
+# 11. 통계
+print(z.sum()) # .sum() 합계
+print(z.mean()) # .mean() 평균
+print(z.max()) # .max() 최대값
+print(z.min()) # .min() 최소값
+print(z.median()) # .median() 중앙값
+print(z.var()) # .var() 분산
+print(z.std()) # .std() 표준편차
+print(z.count()) # .count() 요소 개수
+print(z.value_counts()) # .value_counts() 각 요소별 중복 개수
+print(z.value_counts(normalize=True)) # 각 요소가 전체에서 차지하는 비율(0~1)
 
