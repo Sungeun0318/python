@@ -107,3 +107,18 @@ x = z.sort_index(ascending=False) # 내림차순(desc)
 print(x)
 x = z.sort_values(ascending=False) # 내림차순(desc)
 print(x)
+
+# 13. 그룹, .groupby(level = 0).집계함수(), 그룹 이후에 집계중요!
+# .groupby(level=0).agg(['함수명', '함수명'])
+z = pd.Series([10, 20, 30, 10, 20, 30],
+              index=[ 'a', 'b', 'a', 'b', 'a', 'b'])
+
+x = z.groupby(level=0).sum() # 인덱스(라벨)별 총합계
+print(x)
+
+x = z.groupby(level=0).mean() # 인덱스(라벨)별 평균
+print(x)
+
+x = z.groupby(level=0).agg(['sum', 'mean', 'count']) # 여러개 집계함수는 agg 함수로 묶어서 포함
+
+
