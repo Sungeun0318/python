@@ -57,13 +57,20 @@ for col in mode_cols :
 # 5. 데이터 시각화 및 분석
 # 5-1. 주택 판매 가격(SalePrice) 분포 분석
 # sns.histplot을 사용하여 주택 판매 가격(SalePrice)의 분포와 치우침(Skewness) 정도를 확인한다. (KDE 포함)
+sns.histplot(df['SalePrice'],label='주택 판매 가격 분포',kde=True)
+plt.show()
 
 # [차트 사진]
 # [차트 해석]
 
 # 5-2. 주거 면적과 가격 관계 분석 (가설 1 검증)
 # sns.scatterplot을 사용하여 지상 주거 면적(GrLivArea)과 판매 가격(SalePrice) 간의 상관관계를 산점도로 분석한다.
-
+sns.scatterplot( data=df , x='GrLivArea' , y='SalePrice' ,s=30)
+plt.title('주거 면적에 따른 가격 분포')
+plt.xlabel('주거 면적')
+plt.ylabel('판매 가격')
+plt.grid()
+plt.show()
 # [차트 사진]
 # [차트 해석]
 
@@ -71,6 +78,8 @@ for col in mode_cols :
 # sns.boxplot을 사용하여 주택 스타일(HouseStyle)별 가격 분포와 이상치(Outlier)를 파악한다.
 sns.boxplot(data=df, x='HouseStyle', y='SalePrice')
 plt.title('주택 스타일별 가격 분포와 이상치')
+plt.xlabel('House Style')
+plt.ylabel('Price')
 plt.show()
 
 # [차트 사진]
@@ -79,8 +88,18 @@ plt.show()
 # 5-4. 주요 외관 요소별 가격 분포 비교 (가설 2 검증)
 # sns.boxplot을 사용하여 지붕 스타일(RoofStyle) 및 외장재(Exterior1st)에 따른 가격 차이를 분석한다.
 
+sns.boxplot(data=df,x='RoofStyle', y='SalePrice')
+sns.boxplot(data=df,x='Exterior1st', y='SalePrice')
+plt.show()
 # [차트 사진]
 # [차트 해석]
 
 # 5-5. 상관관계 시각화 및 핵심 인자 도출 (가설 3 검증)
 # sns.heatmap을 사용하여 수치형 변수 전체의 상관계수를 시각화하고한다.
+matrix = df.corr(numeric_only=True)
+
+plt.figure(figsize=(12, 10))
+sns.heatmap(matrix, cmap='coolwarm') 
+plt.title('수치형 변수 상관관계 히트맵')
+plt.show()
+
