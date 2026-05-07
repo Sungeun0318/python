@@ -11,6 +11,7 @@ with open('./T5_data.json', 'r', encoding='utf-8') as json_file :
 df = pd.DataFrame(data_json['financial_performance_data'])
 
 # [2] 플롯박스 : '수익' '비용' '이익' 별 박스 플롯
+# plt.boxplot() : 데이터 최솟값, 최대값, 1사분위, 중앙값 3사분위 시각화
 plt.figure(figsize = (10, 6)) 
 plt.boxplot([df['수익'], df['비용'], df['이익']], tick_labels=['수익', '비용', '이익'])
 plt.title('재무 성과 분포')
