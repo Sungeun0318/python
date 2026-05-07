@@ -12,7 +12,17 @@ df = pd.DataFrame(data_json['patient_status_data'])
 print(df)
 
 # [2] 막대차트 : 상태별 환자수 비교
+# plt.bar[x축값, y축값]
+plt.bar(df['상태'], df['환자 수'], color='skyblue')
+plt.title('상태별 환자 수 비교')
+plt.xlabel('상태')
+plt.ylabel('환자 수')
+plt.show()
 
 
-# [3] 원형차트 : 전체대비 각 상태의 환자수 비율
+
+# [3] 원형차트 : 전체대비 각 상태의 환자수 백분율
+plt.pie(df['환자 수'], labels=df['상태'], autopct='%1.1f%%', startangle=140)
+plt.title('환자 상태 비율')
+plt.show()
 
