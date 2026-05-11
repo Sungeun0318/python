@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import time
+import pandas as pd
 
 # [1] 크롤링 주소 확인 : https://www.yes24.com/product/category/bestseller?categoryNumber=001
 
@@ -29,11 +30,13 @@ for page in range(1, 4) : # range(시작, 끝전까지)
         yes_b = book.select_one('.yes_b').get_text().strip()
         info_auth = book.select_one('.info_auth').get_text().split('\n')[0]
     
-    # [6] 리스트에 딕셔너리 포함하기
-    book_list.append({"제목" : gd_name, "가격" : yes_b, "저자정보" : info_auth})
+        # [6] 리스트에 딕셔너리 포함하기
+        book_list.append({"제목" : gd_name, "가격" : yes_b, "저자정보" : info_auth})
     
     # [7] import time, time.sleep(초), 지정한 초 만큼 코드(스레드)가 대기상태, 즉] 서버 과부하 방지
     time.sleep(2)
     
-# [8]
+# [8] 판다스에 넣어주기
 print(book_list)
+df = pd.DataFrame(book_list)
+print(df)
