@@ -27,5 +27,35 @@ async def naverRun() : # 동기화된 함수
         url = "https://search.naver.com/search.naver?where=image&query=짱구" # url
         page = await browser.new_page()                                     # 새로운 페이지 탭) 열기
         await page.goto(url)
+        
+        # (4-1) (자료가 표시될 때까지 기다리기) 대기상태 만들기
+        # (4-2) 스크롤 내리기 이벤트(JS)     
+        for i in range(2) : # 스크롤 2번 내리기
+             # page.wait_for_timeout(밀리초) : 시스템(인터넷속도)에 따라 적절하게 지정
+             await page.wait_for_timeout(3000)
+             # window(브라우저).scrllTo(시작위치, 이동위치) 
+             # 이동위치 : documnet(현재 HTML).body(본문).scrollHeight(스크롤높이) : 즉 현재 브라우저 스크롤을 본문의 가장 하단으로 이동
+             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)") # await page.evaluate("JS코드")
+                
+        # (5) 실행된 페이지에서 특정한 요소 가져오기 
+        #  page.query_selector_all(식별자) 여러 개,  page.query_selector(식별자) 하나
+        items = await page.query_selector_all(".tile_item")
+        
+        image_list = []
+        for item in items : # 여러 개 item에서 제목과 이미지 가져오기 
+            title_tag = await item.query_selector(".info_title .txt")
+            image_title = await title_tag.inner_text() if title_tag else '제목없음' # <마크업> inner_text </마크업>
+            
+            # css 선택자 : #id, .class, 마크업, 마크업.class, 
+            image_tag = await item.query_selector("._fe_image_tab_content_thumbnail_image")
+            image_link = await image_tag.get_attribute('src') if image_tag else '링크없음' # .get_attribute(속성명) # <마크업 속성명 = 값>
+        
+            image_list.append({'제목' : image_title, '링크' : image_link})
+
+            
+        print(image_list) # 확인
+        
+        # (*) (직접) 안전하게 브라우저 닫기
+        await browser.close()
     
 asyncio.run(naverRun()) # 동기화된 함수 실행
