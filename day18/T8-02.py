@@ -18,3 +18,24 @@ if __name__ == "__main__" :
 @app.get("/") # HTTP GET 방식으로 매핑한다 # 주소 정의
 async def index() :
     return "안녕 파이썬웹"
+
+# 5. 쿼리 파라미터 # 예] http://127.0.0.1:8000/user?name=유재석&age=40
+@app.get("/user")
+async def find_user(name, age : int) : # URL?변수=값&변수명=값 # 기본타입 str # 지정타입은 변수명 : 타입
+    return {'name' : name, 'age' : age, 'msg' : '쿼리스트링예시'}
+
+# 6. 경로 파라미터 # 예] http://127.0.0.1:8000/item/유재석/40
+@app.get("/item/{name}/{age}")
+async def find_item(name : str, age : int) :
+    return{'name' : name, 'age' : age, 'msg' : '경로파라미터예시'}
+
+# 7. 본문(body)                         # POST/PUT
+@app.post("/product")
+async def find_product(product : dict) : # 변수명 : dict # 딕셔너리 타입으로 받기
+    product['msg'] = '본문예시'
+    return product
+
+# RESTAPI 테스트 : [1] TalendAPI
+# POST http://127.0.0.1:8000/product
+# Content-Type: application/json
+# Body: {"name":"apple","age":10}
