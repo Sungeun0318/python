@@ -11,4 +11,7 @@ from service import ProductService
 @router.get("/products")
 async def products() :
     return ProductService.products()
-    
+
+@router.get("/spring")
+async def getSpring() :
+    return await ProductService.getSpring()
